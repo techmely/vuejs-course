@@ -1,17 +1,21 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <script setup>
 import { ref, reactive } from "vue";
-const shoppingItems = ref([
+const users = ref([
   {
-    name: "apple",
-    price: 7,
+    name: "John",
+    age: 30,
+    isActive: true,
   },
   {
-    name: "orange",
-    price: 12,
+    name: "Bob",
+    age: 30,
+    isActive: false,
   },
   {
-    name: "banana",
-    price: 10,
+    name: "Carol",
+    age: 30,
+    isActive: true,
   },
 ]);
 </script>
@@ -19,10 +23,11 @@ const shoppingItems = ref([
 <template>
   <div>
     <ul>
-      <li v-for="item in shoppingItems" :key="item.name">
-        {{ item.name }} - {{ item.price }}
-      </li>
+      <template v-for="(user, index) in users">
+        <li v-if="!user.isActive" :key="user.name">
+          {{ user.name }}: {{ user.isActive ? "Active" : "Deactive" }}({{ index }})
+        </li>
+      </template>
     </ul>
-    <span v-for="n in 10" :key="n">{{ n }}</span>
   </div>
 </template>
