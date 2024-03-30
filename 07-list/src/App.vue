@@ -1,33 +1,37 @@
 <!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <script setup>
 import { ref, reactive } from "vue";
-const users = ref([
+const newTodo = ref("");
+const todos = reactive([
   {
-    name: "John",
-    age: 30,
-    isActive: true,
+    id: 1,
+    text: "Learn vuejs",
   },
   {
-    name: "Bob",
-    age: 30,
-    isActive: false,
-  },
-  {
-    name: "Carol",
-    age: 30,
-    isActive: true,
+    id: 2,
+    text: "Build a todo app",
   },
 ]);
+
+const addTodo = () => {
+  if (newTodo.value.trim() === "") return;
+  const todo = {
+    id: todos.length + 1,
+    text: newTodo.value,
+  };
+  todos.push(todo);
+  newTodo.value = "";
+};
 </script>
 
 <template>
   <div>
+    <input type="text" v-model="newTodo" @keyup.enter="addTodo" />
+    <button @click="addTodo">Add todo</button>
     <ul>
-      <template v-for="(user, index) in users">
-        <li v-if="!user.isActive" :key="user.name">
-          {{ user.name }}: {{ user.isActive ? "Active" : "Deactive" }}({{ index }})
-        </li>
-      </template>
+      <li v-for="todo in todos" :key="todo.id">
+        {{ todo.text }}
+      </li>
     </ul>
   </div>
 </template>
