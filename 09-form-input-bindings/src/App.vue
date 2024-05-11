@@ -6,7 +6,11 @@ const multilineText = ref("");
 
 const checkedNames = ref([]);
 const radioChecked = ref();
+const checked = ref();
 const selected = ref("");
+
+const firstOption = ref("first option");
+const secondOption = ref("second option");
 </script>
 
 <template>
@@ -18,13 +22,14 @@ const selected = ref("");
     <p>Multiline Text: {{ multilineText }}</p>
     <textarea v-model="multilineText" placeholder="Input your message" />
 
-    <p>Checkbox: {{ checkedNames }}</p>
-    <input type="checkbox" id="a" v-model="checkedNames" value="A" />
+    <p>Checkbox: {{ checked }}</p>
+    <input type="checkbox" id="a" v-model="checked" true-value="yes" false-value="no" />
+
+    <p>Multiple checkbox: {{ checkedNames }}</p>
+    <input type="checkbox" id="a" v-model="checkedNames" :value="firstOption" />
     <label for="a">A</label>
-    <input type="checkbox" id="b" v-model="checkedNames" value="B" />
+    <input type="checkbox" id="b" v-model="checkedNames" :value="secondOption" />
     <label for="b">B</label>
-    <input type="checkbox" id="c" v-model="checkedNames" value="C" />
-    <label for="c">C</label>
 
     <p>Radio: {{ radioChecked }}</p>
     <input type="radio" id="a" v-model="radioChecked" value="A" />
@@ -35,7 +40,7 @@ const selected = ref("");
     <p>Select: {{ selected }}</p>
     <select v-model="selected">
       <option disabled value="">Please select one</option>
-      <option>A</option>
+      <option :value="{ name: 'A' }">A</option>
       <option>B</option>
       <option>C</option>
     </select>
