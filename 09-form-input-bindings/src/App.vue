@@ -16,9 +16,9 @@ const secondOption = ref("second option");
 <template>
   <div>
     <h1>Form Input Bindings</h1>
-    <p>Text: {{ text }}</p>
+    <p>Text: {{ text }} {{ typeof text }}</p>
 
-    <input v-model="text" />
+    <input v-model.trim="text" />
     <p>Multiline Text: {{ multilineText }}</p>
     <textarea v-model="multilineText" placeholder="Input your message" />
 
