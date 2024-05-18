@@ -1,31 +1,24 @@
 <template>
   <div class="about">
-    <h1>Timer: {{ time }}</h1>
+    <h1 id="count">Count: {{ count }}</h1>
+    <button @click="increment">Increment</button>
   </div>
 </template>
 
 <script setup>
-import { onBeforeMount, onBeforeUnmount, onMounted, onUnmounted, ref } from "vue";
+import { onBeforeUpdate, onUpdated, ref } from "vue";
 
-const time = ref(0);
-let intervalId = null;
-onBeforeMount(() => {
-  console.log("onBeforeMount");
+const count = ref(0);
+
+const increment = () => {
+  count.value++;
+};
+
+onBeforeUpdate(() => {
+  console.log("onBeforeUpdate", document.getElementById("count").textContent);
 });
 
-onMounted(() => {
-  console.log("onMounted");
-  intervalId = setInterval(() => {
-    time.value++;
-  }, 1000);
-});
-
-onBeforeUnmount(() => {
-  console.log("onBeforeUnmount");
-  clearInterval(intervalId);
-});
-
-onUnmounted(() => {
-  console.log("onUnmounted");
+onUpdated(() => {
+  console.log("onUpdated", document.getElementById("count").textContent);
 });
 </script>
