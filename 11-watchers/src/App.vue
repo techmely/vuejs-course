@@ -1,31 +1,44 @@
-<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <script setup>
-import { ref, watch } from "vue";
-const question = ref("");
-const isLoading = ref(false);
-const answer = ref("");
+import { reactive, ref, watch } from "vue";
+const x = ref(0);
+const y = ref(0);
 
-watch(question, async (newQuestion) => {
-  if (newQuestion.includes("?")) {
-    isLoading.value = true;
-    answer.value = "Đang suy nghĩ...";
-    try {
-      const response = await fetch("https://yesno.wtf/api");
-      answer.value = (await response.json()).answer;
-    } catch (error) {
-      answer.value = "Error! Không thể call api";
-    } finally {
-      isLoading.value = false;
-    }
-  }
+const user = reactive({
+  age: 18,
 });
+
+watch(
+  () => x.value + y.value,
+  (sum) => {
+    console.log(`Tổng của x và y là: ${sum}`);
+  }
+);
+
+watch([x, () => y.value + 1], ([newX, newY]) => {
+  console.log(`Giá trị cập nhật: ${newX}, ${newY}`);
+});
+
+watch(() => user.age, (newAge) => {
+  console.log(`Tuổi: ${newAge}`);
+});
+
+const increment = () => {
+  x.value++;
+  y.value++;
+};
+
+const changeAge = () => {
+  user.age = 20;
+};
 </script>
 
 <template>
   <div>
     <h1>Watchers</h1>
-    <p>Hỏi một câu hỏi có thể trả lời bằng "yes" hoặc "no"</p>
-    <input v-model="question" :disabled="isLoading" />
-    <p>{{ answer }}</p>
+    <button @click="increment">Increment</button>
+    <p>{{ x }}, {{ y }}</p>
+
+    <button @click="changeAge">Change age</button>
+    <p>{{ user.age }}</p>
   </div>
 </template>
