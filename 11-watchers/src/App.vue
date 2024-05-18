@@ -5,6 +5,10 @@ const y = ref(0);
 
 const user = reactive({
   age: 18,
+  class: {
+    students: 0,
+    name: "A",
+  },
 });
 
 watch(
@@ -18,9 +22,9 @@ watch([x, () => y.value + 1], ([newX, newY]) => {
   console.log(`Giá trị cập nhật: ${newX}, ${newY}`);
 });
 
-watch(() => user.age, (newAge) => {
-  console.log(`Tuổi: ${newAge}`);
-});
+watch(user, (newUser, oldUser) => {
+  console.log(`User: ${JSON.stringify(newUser)}, ${JSON.stringify(oldUser)}}`);
+}, {deep: true, immediate: true});
 
 const increment = () => {
   x.value++;
@@ -28,7 +32,7 @@ const increment = () => {
 };
 
 const changeAge = () => {
-  user.age = 20;
+  user.class.students++
 };
 </script>
 
