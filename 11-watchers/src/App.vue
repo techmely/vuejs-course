@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref, watch } from "vue";
+import { reactive, ref, watch, watchEffect } from "vue";
 const x = ref(0);
 const y = ref(0);
 
@@ -11,28 +11,20 @@ const user = reactive({
   },
 });
 
-watch(
-  () => x.value + y.value,
-  (sum) => {
-    console.log(`Tổng của x và y là: ${sum}`);
-  }
-);
-
-watch([x, () => y.value + 1], ([newX, newY]) => {
-  console.log(`Giá trị cập nhật: ${newX}, ${newY}`);
+watchEffect(() => {
+  console.log(`Giá trị x: ${x.value}, y: ${y.value}`);
 });
 
-watch(user, (newUser, oldUser) => {
-  console.log(`User: ${JSON.stringify(newUser)}, ${JSON.stringify(oldUser)}}`);
-}, {deep: true, immediate: true});
-
+watchEffect(() => {
+  console.log(`User: ${JSON.stringify(user)}`);
+});
 const increment = () => {
   x.value++;
   y.value++;
 };
 
 const changeAge = () => {
-  user.class.students++
+  user.class.students++;
 };
 </script>
 
