@@ -1,13 +1,13 @@
 <script setup>
 const props = defineProps({
-  message: Number,
+  greetingMessage: String,
 });
-console.log(props.message);
+console.log(props.greetingMessage);
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ message }}</h1>
+    <h1 class="green">{{ greetingMessage }}</h1>
     <h3>
       You’ve successfully created a project with
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
