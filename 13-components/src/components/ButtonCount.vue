@@ -1,9 +1,14 @@
 <template>
   <button @click="count++">{{ count }}</button>
+  <p>{{ countPlus }}</p>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
+const props = defineProps({
+  init: Number,
+});
+const count = ref(props.init);
 
-const count = ref(0);
+const countPlus = computed(() => props.init + 1);
 </script>
