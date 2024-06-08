@@ -2,11 +2,21 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import ButtonCount from "./components/ButtonCount.vue";
-import { ref } from "vue";
+import ComponentVModel from "./components/ComponentVModel.vue";
+import { ref, watchEffect } from "vue";
 const count = ref(0);
 
 const increaseBy = (number1, number2) => {
   count.value = count.value + number1 + number2;
+};
+const email = ref("");
+
+watchEffect(() => {
+  console.log(email.value);
+});
+
+const changeEmailDefaultFromParent = () => {
+  email.value = "techmely.creation@gmail.com";
 };
 </script>
 
@@ -15,6 +25,10 @@ const increaseBy = (number1, number2) => {
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
+      <component-v-model v-model="email" />
+      <button @click="changeEmailDefaultFromParent">
+        Change email default from parent
+      </button>
       <HelloWorld :count="count" />
       <button-count
         @increase="count++"
