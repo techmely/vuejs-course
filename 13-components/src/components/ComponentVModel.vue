@@ -15,7 +15,14 @@
 
 <script setup>
 const email = defineModel("email");
-const username = defineModel("username");
+const [username, modifiers] = defineModel("username", {
+  set(value) {
+    if (modifiers.capitalize) {
+      return value.charAt(0).toUpperCase() + value.slice(1);
+    }
+    return value;
+  },
+});
 const setEmailDefault = () => {
   email.value = "thaycacac.official@gmail.com";
 };
