@@ -41,7 +41,10 @@ const changeUsernameDefaultFromParent = () => {
         @increase="count++"
         @increase-by-two-times="count = count + 2"
         @increase-by="increaseBy"
-      />
+        ><template #increase> <span>Increase</span></template>
+        <template #increaseByTwoTimes> <span>Increase By Two Times</span></template>
+        <template #increaseBy> <span>Increase By</span></template>
+      </button-count>
       <ComponentA />
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -102,8 +105,7 @@ nav a:first-of-type {
 
   header .wrapper {
     display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 
   nav {

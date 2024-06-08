@@ -1,8 +1,14 @@
 <template>
   <div>
-    <button @click="callFunctionIncrease">Increase</button>
-    <button @click="callFunctionIncreaseByTwoTimes">Increase by two times</button>
-    <button @click="callFunctionIncreaseBy">Increase by</button>
+    <button @click="callFunctionIncrease">
+      <slot name="increase">Button content</slot>
+    </button>
+    <button @click="callFunctionIncreaseByTwoTimes">
+      <slot name="increaseByTwoTimes">Button content</slot>
+    </button>
+    <button @click="callFunctionIncreaseBy">
+      <slot name="increaseBy">Button content</slot>
+    </button>
   </div>
 </template>
 
