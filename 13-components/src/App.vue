@@ -10,6 +10,7 @@ const increaseBy = (number1, number2) => {
   count.value = count.value + number1 + number2;
 };
 const email = ref("");
+const username = ref("");
 
 watchEffect(() => {
   console.log(email.value);
@@ -18,6 +19,9 @@ watchEffect(() => {
 const changeEmailDefaultFromParent = () => {
   email.value = "techmely.creation@gmail.com";
 };
+const changeUsernameDefaultFromParent = () => {
+  username.value = "techmely";
+};
 </script>
 
 <template>
@@ -25,9 +29,12 @@ const changeEmailDefaultFromParent = () => {
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <component-v-model v-model="email" />
+      <component-v-model v-model:email="email" v-model:username="username" />
       <button @click="changeEmailDefaultFromParent">
         Change email default from parent
+      </button>
+      <button @click="changeUsernameDefaultFromParent">
+        Change username default from parent
       </button>
       <HelloWorld :count="count" />
       <button-count

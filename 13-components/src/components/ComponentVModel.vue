@@ -5,12 +5,21 @@
     <p>{{ email }}</p>
     <button @click="setEmailDefault">Set email default</button>
   </div>
+  <div>
+    <label for="Username">Username</label>
+    <input type="text" v-model="username" />
+    <p>{{ username }}</p>
+    <button @click="setUsernameDefault">Set username default</button>
+  </div>
 </template>
 
 <script setup>
-const email = defineModel();
-
+const email = defineModel("email");
+const username = defineModel("username");
 const setEmailDefault = () => {
   email.value = "thaycacac.official@gmail.com";
+};
+const setUsernameDefault = () => {
+  username.value = "thaycacac";
 };
 </script>
