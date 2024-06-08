@@ -21,6 +21,7 @@ const increaseBy = (number1, number2) => {
         @increase-by-two-times="count = count + 2"
         @increase-by="increaseBy"
       />
+      <ComponentA />
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
