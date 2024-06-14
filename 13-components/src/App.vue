@@ -23,7 +23,14 @@ const changeUsernameDefaultFromParent = () => {
   username.value = "techmely";
 };
 const currentLocale = ref("vietnam");
-provide("locale", currentLocale);
+
+const updateCurrentLocale = () => {
+  currentLocale.value = "english";
+};
+provide("locale", {
+  locale: currentLocale,
+  updateLocale: updateCurrentLocale,
+});
 </script>
 
 <template>
@@ -31,7 +38,7 @@ provide("locale", currentLocale);
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-    <button @click="currentLocale = 'english'">Change current locale</button>
+      <button @click="currentLocale = 'english'">Change current locale</button>
       <component-v-model v-model:email="email" v-model:username.capitalize="username" />
       <button @click="changeEmailDefaultFromParent">
         Change email default from parent

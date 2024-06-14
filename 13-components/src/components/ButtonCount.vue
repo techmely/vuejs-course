@@ -17,7 +17,7 @@
 import { inject } from "vue";
 const emit = defineEmits(["increase", "increase-by-two-times", "increase-by"]);
 
-const locale = inject("locale");
+const {locale} = inject("locale");
 
 const callFunctionIncrease = () => {
   emit("increase");
