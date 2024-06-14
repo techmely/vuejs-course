@@ -1,4 +1,5 @@
 <script setup>
+import LocaleComponent from './LocaleComponent.vue';
 const props = defineProps({
   count: Number,
 });
@@ -7,6 +8,7 @@ console.log(props.count);
 
 <template>
   <h1 class="green">{{ count }}</h1>
+  <LocaleComponent/>
 </template>
 
 <style scoped>

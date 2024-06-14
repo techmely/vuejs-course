@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import ButtonCount from "./components/ButtonCount.vue";
 import ComponentVModel from "./components/ComponentVModel.vue";
-import { ref, watchEffect } from "vue";
+import { provide, ref, watchEffect } from "vue";
 const count = ref(0);
 
 const increaseBy = (number1, number2) => {
@@ -22,6 +22,8 @@ const changeEmailDefaultFromParent = () => {
 const changeUsernameDefaultFromParent = () => {
   username.value = "techmely";
 };
+const currentLocale = ref("vietnam");
+provide("locale", currentLocale);
 </script>
 
 <template>
@@ -29,6 +31,7 @@ const changeUsernameDefaultFromParent = () => {
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
+    <button @click="currentLocale = 'english'">Change current locale</button>
       <component-v-model v-model:email="email" v-model:username.capitalize="username" />
       <button @click="changeEmailDefaultFromParent">
         Change email default from parent

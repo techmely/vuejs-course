@@ -9,6 +9,8 @@ const app = createApp(App)
 
 app.component('ComponentA', GlobalComponent).component('ComponentB', GlobalComponent)
 
+app.provide('message', 'Hello!')
+
 app.use(router)
 
 app.mount('#app')
