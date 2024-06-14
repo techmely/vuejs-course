@@ -2,10 +2,15 @@
 import { RouterLink, RouterView } from "vue-router";
 import HelloWorld from "./components/HelloWorld.vue";
 import ButtonCount from "./components/ButtonCount.vue";
-import ComponentVModel from "./components/ComponentVModel.vue";
-import { provide, ref, watchEffect } from "vue";
+import LoadingComponent from "./components/LoadingComponent.vue";
+import ErrorComponent from "./components/ErrorComponent.vue";
+import { defineAsyncComponent, provide, ref, watchEffect } from "vue";
 const count = ref(0);
-
+const ComponentVModel = defineAsyncComponent({
+  loader: () => import("./components/ComponentVModel.vue"),
+  loadingComponent: LoadingComponent,
+  errorComponent: ErrorComponent,
+});
 const increaseBy = (number1, number2) => {
   count.value = count.value + number1 + number2;
 };
