@@ -4,7 +4,6 @@ import ComponentA from "./components/ComponentA.vue";
 import ComponentB from "./components/ComponentB.vue";
 
 const currentComponent = ref(ComponentA);
-
 </script>
 
 <template>
@@ -13,6 +12,6 @@ const currentComponent = ref(ComponentA);
     <button @click="currentComponent = ComponentA">Show component A</button>
     <button @click="currentComponent = ComponentB">Show component B</button>
 
-    <KeepAlive :max="1"> <component :is="currentComponent" /></KeepAlive>
+    <KeepAlive> <component :is="currentComponent" /></KeepAlive>
   </div>
 </template>
